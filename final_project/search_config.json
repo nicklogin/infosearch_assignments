@@ -1,0 +1,8 @@
+{
+    "bm25_data_path": "bm25_data",
+    "tf_data_path": "tf_data",
+    "ft_data_path": "ft_data",
+    "elmo_data_path": "elmo_data",
+    "elmo_path": "models/elmo",
+    "ft_path": "models/fasttext/model.model"
+}

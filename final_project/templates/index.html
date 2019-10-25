@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .search_panel{
+            font-family: sans-serif;
+            background-color: azure;
+            border-radius: 2px;
+            margin: 5%;
+        }
+        .search_field {
+            width: 600pt;
+        }
+        .int_field {
+            width: 24pt;
+        }
+        table {
+            margin: 5%;
+        }
+        td {
+            background-color:ghostwhite;
+            border-radius: 2px;
+        }
+        th {
+            background-color: gray;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="GET" class="search_panel">
+        <input type="text" class="search_field" name="text" value="{{ query }}">
+        Model:
+        <select name="model" >
+            {% autoescape false %}
+            <option value="tf" {% if model_name=="tf" %} selected {% endif %}>TF</option>
+            <option value="bm25" {% if model_name=="bm25" %} selected {% endif %}>BM-25</option>
+            <option value="ft" {% if model_name=="ft" %} selected {% endif %}>FastText</option>
+            <option value="elmo" {% if model_name=="elmo" %} selected {% endif %}>ELMO</option>
+            {% endautoescape %}
+        </select>
+        N results: <input type="number" class="int_field" name="n_results" value="{{ n_res }}">
+        <input type="submit" value="Search">
+    </form>
+
+    <table>
+        <tr>
+            <th>Similarity</th>
+            <th>Document</th>
+        </tr>
+        {% for sim, text in results %}
+        <tr>
+            <td>{{ sim }}</td>
+            <td>{{ text }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
